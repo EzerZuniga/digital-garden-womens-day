@@ -10,12 +10,12 @@ export default function IntroScreen({ onEnterGarden }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <p className="intro-screen__eyebrow">8 de marzo &middot; Dia de la Mujer</p>
+        <p className="intro-screen__eyebrow">8 de marzo &middot; Día de la Mujer</p>
 
         <h1 className="intro-screen__title">Para ti</h1>
 
         <p className="intro-screen__subtitle">
-          Prepare algo especial para ti. Cada rosa esconde un mensaje que queria decirte.
+          Preparé algo especial para ti. Cada rosa esconde un mensaje que quería decirte.
         </p>
 
         <div className="intro-screen__roses-deco" aria-hidden="true">

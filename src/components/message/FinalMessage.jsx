@@ -9,10 +9,10 @@ export default function FinalMessage() {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <Card className="final-message">
-        <p className="final-message__title">Feliz dia de la mujer, Diana &#127801;</p>
+        <p className="final-message__title">Feliz día de la mujer, Diana 🌹</p>
         <p>
-          Espero que este ramo te haya sacado una sonrisa. Solo queria que supieras
-          lo mucho que te admiro y lo especial que eres para mi. Gracias por existir.
+          Espero que este ramo te haya sacado una sonrisa. Solo quería que supieras
+          lo mucho que te admiro y lo especial que eres para mí. Gracias por existir.
         </p>
       </Card>
     </motion.div>

@@ -1,31 +1,21 @@
-import { motion } from "framer-motion";
-import {
-  createPetalItems,
-  petalVariants,
-  petalsLayerVariants
-} from "../../animations/petalsAnimation";
+import { createPetalItems } from "../../animations/petalsAnimation";
 
-const petals = createPetalItems(20);
+const petals = createPetalItems(12);
 
 export default function PetalsAnimation() {
   return (
-    <motion.div
-      className="petals-layer"
-      aria-hidden="true"
-      variants={petalsLayerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {petals.map((petal, index) => (
-        <motion.span
+    <div className="petals-layer" aria-hidden="true">
+      {petals.map((petal) => (
+        <span
           key={petal.id}
           className={`petal ${petal.laneClass} ${petal.sizeClass}`}
-          variants={petalVariants}
-          custom={index}
-          initial="hidden"
-          animate="visible"
+          style={{
+            "--petal-delay": `${petal.delay}s`,
+            "--petal-duration": `${petal.duration}s`,
+            "--petal-drift": `${petal.drift}px`
+          }}
         />
       ))}
-    </motion.div>
+    </div>
   );
 }

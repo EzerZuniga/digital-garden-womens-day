@@ -21,13 +21,14 @@ export default function Flower({ flower, index, isActive, onReveal }) {
       animate="visible"
       whileHover={flowerInteractionMotion.whileHover}
       whileTap={flowerInteractionMotion.whileTap}
+      style={{ transformOrigin: "bottom center" }}
       onHoverStart={() => onReveal(flower.flowerId)}
       onFocus={() => onReveal(flower.flowerId)}
       onClick={() => onReveal(flower.flowerId)}
       aria-label={`Descubrir mensaje de ${flower.title}`}
     >
       <FlowerSvg flowerId={flower.flowerId} />
-      <span className="flower__label">{flower.title}</span>
+      <span className="flower__label" aria-hidden="true">{flower.title}</span>
     </motion.button>
   );
 }

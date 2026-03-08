@@ -16,7 +16,7 @@ export default function MessageCard({ activeFlower, revealedCount, totalFlowers 
         <>
           <h2 className="message-card__title">Toca una rosa</h2>
           <p className="message-card__description">
-            Cada rosa tiene algo que queria decirte. Son solo para ti, Diana.
+            Cada rosa tiene algo que quería decirte. Son solo para ti, Diana.
           </p>
         </>
       )}

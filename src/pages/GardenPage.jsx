@@ -7,6 +7,7 @@ import FinalMessage from "../components/message/FinalMessage";
 import Button from "../components/ui/Button";
 import { useFlowers } from "../hooks/useFlowers";
 import dianaPhoto from "../assets/images/diana.jpeg";
+import ramoPhoto from "../assets/images/ramo.png";
 
 export default function GardenPage() {
   const {
@@ -29,9 +30,19 @@ export default function GardenPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <h1 className="garden-page__title">Feliz dia de la Mujer</h1>
+        <motion.div
+          className="ramo-hero"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+        >
+          <img src={ramoPhoto} alt="Ramo de rosas para ti" className="ramo-hero__img" />
+        </motion.div>
+
+        <h1 className="garden-page__title">Feliz Día de la Mujer</h1>
         <p className="garden-page__subtitle">
-          Rose cada una con carino. Toca las rosas y lee lo que queria decirte.
+          Cada rosa lleva un mensaje especial para ti.
+          <span className="garden-page__subtitle-hint">Tócalas y descubre todo lo que quiero decirte.</span>
         </p>
       </motion.header>
 
@@ -43,7 +54,7 @@ export default function GardenPage() {
         />
 
         <aside className="bouquet-experience__side" aria-live="polite">
-          <p className="bouquet-experience__tag">Para Ti, con mucho carino</p>
+          <p className="bouquet-experience__tag">Para ti, con mucho cariño</p>
 
           {/* Marco de foto de Diana */}
           <div className="diana-frame" aria-label="Foto de Diana">
@@ -79,8 +90,8 @@ export default function GardenPage() {
                 >
                   Diana, estoy muy feliz de que seas parte de mi vida.
                   Este ramo es mi forma de decirte que te admiro, que me alegras
-                  el dia y que hoy, mas que nunca, queria que te sintieras especial.
-                  Feliz dia de la mujer.
+                  el día y que hoy, más que nunca, quería que te sintieras especial.
+                  Feliz día de la mujer.
                 </motion.p>
               )}
             </AnimatePresence>

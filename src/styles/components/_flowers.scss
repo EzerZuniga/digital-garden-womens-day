@@ -7,6 +7,19 @@
   z-index: 1;
 }
 
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-8vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  8% { opacity: 0.85; }
+  75% { opacity: 0.5; }
+  100% {
+    transform: translateY(110vh) translateX(var(--petal-drift, 20px)) rotate(340deg);
+    opacity: 0;
+  }
+}
+
 .petal {
   position: absolute;
   top: -10vh;
@@ -22,6 +35,8 @@
   );
   box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.4);
   filter: blur(0.2px);
+  will-change: transform, opacity;
+  animation: petal-fall var(--petal-duration, 10s) var(--petal-delay, 0s) linear infinite;
 }
 
 // Variaciones de tamaño para los pétalos
@@ -194,6 +209,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 4;
+  will-change: transform;
 }
 
 .flower:focus-visible {
@@ -228,44 +244,54 @@
     drop-shadow(0 0 14px rgba(229, 57, 53, 0.5));
 }
 
-// Etiqueta
+// Etiqueta — oculta por defecto, visible solo al activar/hover
 .flower__label {
-  display: inline-block;
-  margin-top: 0.25rem;
-  padding: 0.15rem 0.45rem;
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.15rem 0.55rem;
   border-radius: 999px;
-  background: rgba(20, 0, 0, 0.75);
-  border: 1px solid rgba(229, 57, 53, 0.4);
+  background: rgba(20, 0, 0, 0.82);
+  border: 1px solid rgba(229, 57, 53, 0.5);
   font-size: 0.68rem;
   font-weight: 600;
   color: #ffcdd2;
   white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease;
   font-family: "Outfit", sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.flower:hover .flower__label,
+.flower.is-active .flower__label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .flower.is-active .flower__label {
-  background: rgba(229, 57, 53, 0.28);
-  border-color: rgba(229, 57, 53, 0.7);
+  background: rgba(229, 57, 53, 0.32);
+  border-color: rgba(229, 57, 53, 0.75);
   color: #fff;
 }
 
-// ── Slots de posición — domo compacto tipo caja floristería ─────────────────
-// Las rosas nacen de la caja cilíndrica, muy juntas en domo
-// La caja ocupa 340px centrada → left base ~50%-170px≈26% a 74%
-// Las flores se posicionan apretadas simulando ramo profesional
+// ── Slots de posición ────────────────────────────────────────────────────────
+// Layout ALTERNADO: back y front intercalados → todas tocables
+// Orden izq→der: back1  front5  back2  front6  back3  front7  back4  front8
+// Framer Motion controla rotate+scale; CSS solo left/bottom/z-index.
+// Back: bottom 238px (8px más alto = profundidad) | Front: bottom 230px
 
-// Fila trasera (más alta, ligeramente oculta por las delanteras)
-.flower--slot-1 { left: 18%; bottom: 282px; transform: rotate(-12deg); z-index: 3; }
-.flower--slot-2 { left: 35%; bottom: 318px; transform: rotate(-4deg);  z-index: 3; }
-.flower--slot-3 { left: 52%; bottom: 318px; transform: rotate(4deg);   z-index: 3; }
-.flower--slot-4 { left: 68%; bottom: 282px; transform: rotate(12deg);  z-index: 3; }
+.flower--slot-1 { left:  5%; bottom: 238px; z-index: 3; } // back izq
+.flower--slot-2 { left: 24%; bottom: 238px; z-index: 4; } // back centro-izq
+.flower--slot-3 { left: 43%; bottom: 238px; z-index: 4; } // back centro-der
+.flower--slot-4 { left: 62%; bottom: 238px; z-index: 3; } // back der
 
-// Fila delantera (más baja, z-index mayor, al frente)
-.flower--slot-5 { left: 10%; bottom: 226px; transform: rotate(-8deg);  z-index: 5; }
-.flower--slot-6 { left: 29%; bottom: 260px; transform: rotate(-2deg);  z-index: 5; }
-.flower--slot-7 { left: 46%; bottom: 272px; z-index: 6; }
-.flower--slot-8 { left: 62%; bottom: 260px; transform: rotate(3deg);   z-index: 5; }
+.flower--slot-5 { left: 14%; bottom: 230px; z-index: 5; } // front izq
+.flower--slot-6 { left: 33%; bottom: 230px; z-index: 6; } // front centro-izq
+.flower--slot-7 { left: 51%; bottom: 230px; z-index: 8; } // front centro (protagonista)
+.flower--slot-8 { left: 70%; bottom: 230px; z-index: 6; } // front der
 
 // ── Tablet ───────────────────────────────────────────────────────────────────
 @media (max-width: 900px) {
@@ -277,6 +303,9 @@
 }
 
 // ── Móvil ────────────────────────────────────────────────────────────────────
+// Proporciones de left se mantienen (porcentajes).
+// Solo hay que recalcular bottom para la caja más pequeña.
+// Caja móvil: bottom 20px + body 155px + top 28px − overlap 20px = 183px
 @media (max-width: 680px) {
   .garden-canvas { min-height: 520px; padding: 0.7rem; }
   .bouquet { min-height: 480px; }
@@ -287,12 +316,15 @@
 
   .flower__svg { width: 58px; }
 
-  .flower--slot-1 { left: 12%; bottom: 232px; }
-  .flower--slot-2 { left: 30%; bottom: 260px; }
-  .flower--slot-3 { left: 50%; bottom: 260px; }
-  .flower--slot-4 { left: 68%; bottom: 232px; }
-  .flower--slot-5 { left: 5%;  bottom: 186px; }
-  .flower--slot-6 { left: 24%; bottom: 212px; }
-  .flower--slot-7 { left: 43%; bottom: 220px; }
-  .flower--slot-8 { left: 62%; bottom: 212px; }
+  // Fila trasera
+  .flower--slot-1,
+  .flower--slot-2,
+  .flower--slot-3,
+  .flower--slot-4 { bottom: 191px; }
+
+  // Fila delantera
+  .flower--slot-5,
+  .flower--slot-6,
+  .flower--slot-7,
+  .flower--slot-8 { bottom: 183px; }
 }
