@@ -9,6 +9,7 @@ Experiencia interactiva en React + Vite, personalizada para Diana Saenz Pahuara,
 - SCSS modular para mejor organizacion 
 - Framer Motion
 - JavaScript ES6+
+- buenas practicas
 
 ## Caracteristicas
 
