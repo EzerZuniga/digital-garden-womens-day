@@ -6,7 +6,7 @@ Experiencia interactiva en React + Vite, personalizada para Diana Saenz Pahuara,
 
 - React (componentes funcionales)
 - Vite
-- SCSS modular
+- SCSS modular para mejor organizacion 
 - Framer Motion
 - JavaScript ES6+
 
@@ -15,7 +15,7 @@ Experiencia interactiva en React + Vite, personalizada para Diana Saenz Pahuara,
 - Pantalla de inicio personalizada en espanol
 - Jardin animado con flores interactivas
 - Mensajes dedicados para Diana en cada flor
-- Animacion ambiental de petalos
+- Animacion ambiental de petalos realistas
 - Mensaje final al desbloquear todas las flores
 - Interfaz responsive optimizada para moviles
 
