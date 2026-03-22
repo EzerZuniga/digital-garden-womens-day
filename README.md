@@ -18,6 +18,7 @@ Experiencia interactiva en React + Vite, personalizada para Diana Saenz Pahuara,
 - Mensajes dedicados para Diana en cada flor
 - Animacion ambiental de petalos realistas
 - Mensaje final al desbloquear todas las flores
+- flores animadas
 - Interfaz responsive optimizada para moviles
 
 ## Ejecutar en Local
