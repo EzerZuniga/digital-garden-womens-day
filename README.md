@@ -1,4 +1,4 @@
-# Jardin Digital - Dia de la Mujer
+# Jardin Digital de flores - Dia de la Mujer
 
 Experiencia interactiva en React + Vite, personalizada para Diana Saenz Pahuara, donde cada flor revela un mensaje especial por el Dia Internacional de la Mujer.
 
